@@ -1,14 +1,15 @@
 import * as React from 'react';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
-import {CATEGORIES, FAVORİTES, HOME, PROFILE} from '../utils/routes';
-import Home from '../screens/home';
-import Categories from '../screens/categories';
-import Favorites from '../screens/favorites';
-import Profile from '../screens/profıle';
+import {CART, CATEGORIES, FAVORİTES, HOME, PROFILE} from '../utils/routes';
+import Home from '../screens/home/home';
+import Categories from '../screens/categories/categories';
+import Favorites from '../screens/favorites/favorites';
+import Profile from '../screens/profıle/profile';
 import {AppColors} from '../theme/color';
-import TabIcon from '../components/router';
+import TabIcon from '../components/router/tabIcon';
 import {ShoppingCart} from 'iconsax-react-native';
-import {Text, TouchableOpacity, View} from 'react-native';
+import {TouchableOpacity} from 'react-native';
+import HeaderTabRight from '../components/router/headerTabRight';
 const Tab = createBottomTabNavigator();
 
 export default function TabNavigator() {
@@ -26,11 +27,7 @@ export default function TabNavigator() {
             route={route}
           />
         ),
-        headerRight: ({focused, color, size}) => (
-          <TouchableOpacity style={{marginHorizontal: 20}}>
-            <ShoppingCart size="30" color={AppColors.BLACK} variant="Bold" />
-          </TouchableOpacity>
-        ),
+        headerRight: () => <HeaderTabRight />,
       })}>
       <Tab.Screen name={HOME} component={Home} />
       <Tab.Screen name={CATEGORIES} component={Categories} />

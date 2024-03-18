@@ -5,14 +5,14 @@ import {View, Text} from 'react-native';
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {CART, HOME, TAB} from '../utils/routes';
-import Cart from '../screens/cart';
+import Cart from '../screens/Cart/Cart';
 import TabNavigator from './tabNavigator';
 
 const Stack = createNativeStackNavigator();
 
-function StackNavigator() {
+function RootNavigator() {
   return (
-    <Stack.Navigator>
+    <Stack.Navigator screenOptions={{headerBackTitle: 'Geri'}}>
       <Stack.Screen
         name={TAB}
         component={TabNavigator}
@@ -23,4 +23,4 @@ function StackNavigator() {
   );
 }
 
-export default StackNavigator;
+export default RootNavigator;
