@@ -18,6 +18,8 @@ export default function TabNavigator() {
       screenOptions={({route, navigation}) => ({
         tabBarActiveTintColor: AppColors.PRIMARY,
         tabBarInactiveTintColor: AppColors.GRAY,
+        headerTitleAlign: 'center',
+        headerBackTitle: 'Geri',
         tabBarIcon: ({focused, color, size}) => (
           <TabIcon
             focused={focused}

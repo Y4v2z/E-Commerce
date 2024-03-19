@@ -8,12 +8,15 @@ import {screenStyle} from '../../styles/secreenStyle';
 // create a component
 const Home = () => {
   const renderItem = ({item}) => {
-    console.log(item);
-    return <View>{item.component}</View>;
+    return <View>{item.isShow && item.component}</View>;
   };
   return (
     <View style={screenStyle.container}>
-      <FlatList data={widgets} renderItem={renderItem} />
+      <FlatList
+        data={widgets}
+        renderItem={renderItem}
+        showsVerticalScrollIndicator={false}
+      />
     </View>
   );
 };

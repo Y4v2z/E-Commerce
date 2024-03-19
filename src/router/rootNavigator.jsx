@@ -12,7 +12,11 @@ const Stack = createNativeStackNavigator();
 
 function RootNavigator() {
   return (
-    <Stack.Navigator screenOptions={{headerBackTitle: 'Geri'}}>
+    <Stack.Navigator
+      screenOptions={{
+        headerBackTitle: 'Geri',
+        headerTitleAlign: 'center',
+      }}>
       <Stack.Screen
         name={TAB}
         component={TabNavigator}
