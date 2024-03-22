@@ -13,15 +13,15 @@ import {AppColors} from '../../theme/color';
 import {Heart} from 'iconsax-react-native';
 import {useNavigation} from '@react-navigation/native';
 import {PRODUCTDETAİL} from '../../utils/routes';
+import Button from '../uı/button';
 
 // create a component
-const WidgetProductCard = ({item}) => {
+const ProductCard = ({item}) => {
   const navigation = useNavigation();
-
   return (
     <Pressable
-      style={styles.container}
-      onPress={() => navigation.navigate(PRODUCTDETAİL, {item: item})}>
+      onPress={() => navigation.navigate(PRODUCTDETAİL, {item: item})}
+      style={styles.container}>
       <Image
         style={{width: width * 0.4, height: width * 0.3, resizeMode: 'contain'}}
         source={{
@@ -67,6 +67,9 @@ const WidgetProductCard = ({item}) => {
           </TouchableOpacity>
         </View>
       </View>
+      <View>
+        <Button title="Sepete Ekle" />
+      </View>
     </Pressable>
   );
 };
@@ -74,10 +77,12 @@ const WidgetProductCard = ({item}) => {
 // define your styles
 const styles = StyleSheet.create({
   container: {
-    width: width * 0.4,
+    width: width / 2,
     margin: 5,
+    flex: 1,
+    marginVertical: 15,
   },
 });
 
 //make this component available to the app
-export default WidgetProductCard;
+export default ProductCard;

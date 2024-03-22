@@ -10,7 +10,7 @@ import WidgetProductCard from '../components/widgets/widgetProductCart';
 const NewArrival = () => {
   const [products, setProducts] = useState([]);
   const getAllProducts = () => {
-    getRequest(PRODUCTS_URL)
+    getRequest(PRODUCTS_URL, {limit: 5})
       .then(response => {
         // console.log(response.data);
         setProducts(response.data);

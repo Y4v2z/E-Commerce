@@ -6,7 +6,8 @@ import widgets from '../../widgets';
 import {screenStyle} from '../../styles/secreenStyle';
 
 // create a component
-const Home = () => {
+const Home = props => {
+  console.log(props);
   const renderItem = ({item}) => {
     return <View>{item.isShow && item.component}</View>;
   };
