@@ -37,6 +37,7 @@ function RootNavigator() {
         component={ProductList}
         options={({route, navigation}) => ({
           headerRight: () => <HeaderTabRight />,
+          title: route?.params?.title,
         })}
       />
       <Stack.Screen name={CART} component={Cart} />

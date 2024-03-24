@@ -1,5 +1,5 @@
 //import liraries
-import React, {Component, useEffect, useState} from 'react';
+import React, {Component, useContext, useEffect, useState} from 'react';
 import {
   View,
   Text,
@@ -18,11 +18,16 @@ import {getRequest} from '../../service/verbs';
 import {PRODUCTS_URL} from '../../service/url';
 import Spinner from '../../components/uı/spinner';
 import {Heart, Star} from 'iconsax-react-native';
+import StoreContext from '../../context/context';
+import {useNavigation} from '@react-navigation/native';
 
 // create a component
 const ProductDetail = ({route}) => {
   const [product, setProduct] = useState(null);
   const [loading, setLoading] = useState(false);
+  const {addCart} = useContext(StoreContext);
+  const navigation = useNavigation();
+
   const {item} = route?.params;
   getProductDetail = () => {
     setLoading(true);
@@ -43,7 +48,7 @@ const ProductDetail = ({route}) => {
         {loading ? (
           <Spinner />
         ) : (
-          <ScrollView>
+          <ScrollView showsVerticalScrollIndicator={false}>
             <View>
               <Image
                 style={{
@@ -134,24 +139,42 @@ const ProductDetail = ({route}) => {
         style={{
           position: 'absolute',
           bottom: 0,
-          height: height * 0.1,
           width: width,
           backgroundColor: AppColors.WHITE,
           justifyContent: 'center',
           alignItems: 'center',
-          padding: 10,
+          paddingVertical: 10,
           flexDirection: 'row',
           borderTopWidth: 1,
           borderColor: AppColors.SOFTGRAY,
         }}>
         <View style={{flex: 1, marginRight: 5}}>
-          <Counter onChange={value => console.warn(value)} />
+          <Counter onChange={value => console.log(value)} />
         </View>
         <View style={{flex: 2}}>
-          <Button title={'Sepete Ekle'} />
+          <TouchableOpacity style={styles.button} onPress={() => addCart(item)}>
+            <Text style={styles.title}> Sepete Ekle</Text>
+          </TouchableOpacity>
+
+          {/* <Button onPress={() => addCart(item)} title={'Sepete Ekle'} /> */}
         </View>
       </View>
     </SafeAreaView>
   );
 };
+const styles = StyleSheet.create({
+  button: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: AppColors.PRIMARY,
+    borderRadius: 5,
+    padding: 8,
+  },
+  title: {
+    fontSize: 16,
+    fontWeight: '500',
+    color: AppColors.WHITE,
+  },
+});
+
 export default ProductDetail;

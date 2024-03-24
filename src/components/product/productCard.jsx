@@ -1,5 +1,5 @@
 //import liraries
-import React, {Component} from 'react';
+import React, {Component, useContext} from 'react';
 import {
   View,
   Text,
@@ -13,10 +13,12 @@ import {AppColors} from '../../theme/color';
 import {Heart} from 'iconsax-react-native';
 import {useNavigation} from '@react-navigation/native';
 import {PRODUCTDETAİL} from '../../utils/routes';
+import StoreContext from '../../context/context';
 import Button from '../uı/button';
 
 // create a component
 const ProductCard = ({item}) => {
+  const {addCart} = useContext(StoreContext);
   const navigation = useNavigation();
   return (
     <Pressable
@@ -68,7 +70,10 @@ const ProductCard = ({item}) => {
         </View>
       </View>
       <View>
-        <Button title="Sepete Ekle" />
+        <TouchableOpacity style={styles.button} onPress={() => addCart(item)}>
+          <Text style={styles.title}> Sepete Ekle</Text>
+        </TouchableOpacity>
+        {/* <Button onPress={() => addCart(item)} title={'Sepete Ekle'} /> */}
       </View>
     </Pressable>
   );
@@ -81,6 +86,18 @@ const styles = StyleSheet.create({
     margin: 5,
     flex: 1,
     marginVertical: 15,
+  },
+  button: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: AppColors.PRIMARY,
+    borderRadius: 5,
+    padding: 8,
+  },
+  title: {
+    fontSize: 16,
+    fontWeight: '500',
+    color: AppColors.WHITE,
   },
 });
 

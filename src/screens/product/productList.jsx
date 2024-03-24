@@ -1,18 +1,18 @@
 //import liraries
 import React, {Component, useState, useEffect} from 'react';
-import {View, ActivityIndicator, FlatList} from 'react-native';
+import {View, FlatList} from 'react-native';
 import {PRODUCTS_URL} from '../../service/url';
 import {getRequest} from '../../service/verbs';
 import ProductCard from '../../components/product/productCard';
 import {screenStyle} from '../../styles/secreenStyle';
 import Spinner from '../../components/uı/spinner';
 import CategorySelect from '../../components/widgets/categorySelect';
-import {Category} from 'iconsax-react-native';
 
 // create a component
-const ProductList = () => {
+const ProductList = ({route}) => {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(false);
+  const productCategory = route?.params?.category;
   const getProducts = Category => {
     const url = Category
       ? PRODUCTS_URL + `/category/${Category}`
@@ -30,7 +30,7 @@ const ProductList = () => {
       });
   };
   useEffect(() => {
-    getProducts();
+    getProducts(productCategory);
   }, []);
 
   return (
@@ -44,7 +44,9 @@ const ProductList = () => {
           showsVerticalScrollIndicator={false}
           numColumns={2}
           data={products}
-          renderItem={({item}) => <ProductCard item={item} />}
+          renderItem={({item}) => (
+            <ProductCard item={item} keyExtractor={item => item.id} />
+          )}
         />
       )}
     </View>
