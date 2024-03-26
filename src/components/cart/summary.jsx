@@ -1,11 +1,32 @@
 //import liraries
-import React, {Component} from 'react';
-import {View, Text, StyleSheet} from 'react-native';
+import React, {Component, useContext} from 'react';
+import {View, Text, StyleSheet, Alert, TouchableOpacity} from 'react-native';
 import {AppColors} from '../../theme/color';
-import Button from '../uı/button';
+import StoreContext from '../../context/context';
+import {useNavigation} from '@react-navigation/native';
+import {CHECKOUT, LOGİN} from '../../utils/routes';
 
 // create a component
 const Summary = () => {
+  const {login} = useContext(StoreContext);
+  const navigation = useNavigation();
+  const checkOut = () => {
+    if (login) {
+      navigation.navigate(CHECKOUT);
+    } else {
+      Alert.alert(
+        'Giriş Yapınız',
+        'Satın almak için giriş yapmanız gereklidir.',
+        [
+          {
+            text: 'Vazgeç',
+            onPress: () => console.log('Cancel Pressed'),
+          },
+          {text: 'Giriş Yap', onPress: () => navigation.navigate(LOGİN)},
+        ],
+      );
+    }
+  };
   return (
     <View style={styles.container}>
       <View
@@ -44,7 +65,10 @@ const Summary = () => {
         <Text style={{color: AppColors.GRAY}}>Total</Text>
         <Text style={{fontWeight: '700'}}>800</Text>
       </View>
-      <Button title={'Checkout'} />
+      <TouchableOpacity style={styles.button} onPress={checkOut}>
+        <Text style={styles.title}> Sepete Ekle</Text>
+      </TouchableOpacity>
+      {/* <Button onPress={() => checkOut()} title={'Checkout'} /> */}
     </View>
   );
 };
@@ -55,6 +79,18 @@ const styles = StyleSheet.create({
     padding: 10,
     borderTopWidth: 1,
     borderColor: AppColors.SOFTGRAY,
+  },
+  button: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: AppColors.PRIMARY,
+    borderRadius: 5,
+    padding: 8,
+  },
+  title: {
+    fontSize: 16,
+    fontWeight: '500',
+    color: AppColors.WHITE,
   },
 });
 

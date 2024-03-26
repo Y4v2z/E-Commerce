@@ -11,7 +11,10 @@ const Introduction = () => {
   const navigation = useNavigation();
   return (
     <View style={styles.container}>
-      <Image source={require('../assets/nike.jpg')} style={styles.image} />
+      <Image
+        source={require('../assets/images/nike.jpg')}
+        style={styles.image}
+      />
       <TouchableOpacity
         onPress={() => navigation.navigate(PRODUCTLİST)}
         style={{

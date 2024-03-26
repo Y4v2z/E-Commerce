@@ -14,7 +14,6 @@ import {Heart} from 'iconsax-react-native';
 import {useNavigation} from '@react-navigation/native';
 import {PRODUCTDETAİL} from '../../utils/routes';
 import StoreContext from '../../context/context';
-import Button from '../uı/button';
 
 // create a component
 const ProductCard = ({item}) => {

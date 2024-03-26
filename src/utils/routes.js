@@ -6,3 +6,5 @@ export const FAVORİTES = 'Favoriler';
 export const TAB = 'Tab Navigator';
 export const PRODUCTLİST = 'Tüm Ürünler';
 export const PRODUCTDETAİL = 'Ürün Detayı';
+export const CHECKOUT = 'Ödeme';
+export const LOGİN = 'Giriş Yap';
