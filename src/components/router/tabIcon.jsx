@@ -6,7 +6,7 @@ import {
   Profile,
 } from 'iconsax-react-native';
 import React, {Component} from 'react';
-import {View, Text, StyleSheet} from 'react-native';
+import {View} from 'react-native';
 import {HOME, CATEGORIES, FAVORİTES, PROFILE} from '../../utils/routes';
 
 // create a component

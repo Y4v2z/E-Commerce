@@ -8,6 +8,7 @@ import {
   ScrollView,
   Image,
   TouchableOpacity,
+  Alert,
 } from 'react-native';
 import {screenStyle} from '../../styles/secreenStyle';
 import Button from '../../components/uı/button';
@@ -20,15 +21,33 @@ import Spinner from '../../components/uı/spinner';
 import {Heart, Star} from 'iconsax-react-native';
 import StoreContext from '../../context/context';
 import {useNavigation} from '@react-navigation/native';
+import {LOGİN} from '../../utils/routes';
 
 // create a component
 const ProductDetail = ({route}) => {
   const [product, setProduct] = useState(null);
   const [loading, setLoading] = useState(false);
-  const {addCart} = useContext(StoreContext);
+  const {addCart, addFavorites, login} = useContext(StoreContext);
   const navigation = useNavigation();
-
   const {item} = route?.params;
+  checkIsLogin = () => {
+    if (login) {
+      addFavorites(item);
+    } else {
+      Alert.alert(
+        'Giriş Yapınız',
+        'Favorilere eklemek için giriş yapmanız gereklidir.',
+        [
+          {
+            text: 'Vazgeç',
+            onPress: () => console.log('Cancel Pressed'),
+          },
+          {text: 'Giriş Yap', onPress: () => navigation.navigate(LOGİN)},
+        ],
+      );
+    }
+  };
+
   getProductDetail = () => {
     setLoading(true);
     getRequest(PRODUCTS_URL + `/${item.id}`)
@@ -111,12 +130,21 @@ const ProductDetail = ({route}) => {
                     padding: 5,
                   }}>
                   <TouchableOpacity
+                    onPress={() => checkIsLogin(item)}
                     style={{
                       backgroundColor: AppColors.SOFTGRAY,
                       padding: 5,
                       borderRadius: 100,
                     }}>
-                    <Heart size={30} color={AppColors.RED} variant="Bold" />
+                    {item.favorites ? (
+                      <Heart size={20} color={AppColors.RED} variant="Bold" />
+                    ) : (
+                      <Heart
+                        size={20}
+                        color={AppColors.BLACK}
+                        variant="Outline"
+                      />
+                    )}
                   </TouchableOpacity>
                 </View>
               </View>

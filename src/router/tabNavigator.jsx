@@ -1,14 +1,12 @@
 import * as React from 'react';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
-import {CART, CATEGORIES, FAVORİTES, HOME, PROFILE} from '../utils/routes';
+import {CATEGORIES, FAVORİTES, HOME, PROFILE} from '../utils/routes';
 import Home from '../screens/home/home';
 import Categories from '../screens/categories/categories';
 import Favorites from '../screens/favorites/favorites';
 import Profile from '../screens/profıle/profile';
 import {AppColors} from '../theme/color';
 import TabIcon from '../components/router/tabIcon';
-import {ShoppingCart} from 'iconsax-react-native';
-import {TouchableOpacity} from 'react-native';
 import HeaderTabRight from '../components/router/headerTabRight';
 const Tab = createBottomTabNavigator();
 

@@ -37,21 +37,15 @@ const Login = ({navigation}) => {
       postRequest(LOGİN_URL, form)
         .then(response => {
           console.log(response.data);
+          setLogin(true);
+          navigation.goBack();
         })
         .catch(error => {
           console.log(error);
-        });
+        })
+        .finally(() => setDisabledButton(false));
     }
   };
-  // setDisabledButton(true);
-  // postRequest(LOGİN_URL, form)
-  //   .then(response => {
-  //     console.log(response.data);
-  //     setLogin(true);
-  //     navigation.goBack();
-  //   })
-  //   .catch(error => console.log(error.response))
-  //   .finally(() => setDisabledButton(false));
 
   return (
     <View style={screenStyle.container}>

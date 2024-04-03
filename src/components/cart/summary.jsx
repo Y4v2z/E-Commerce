@@ -66,7 +66,7 @@ const Summary = () => {
         <Text style={{fontWeight: '700'}}>800</Text>
       </View>
       <TouchableOpacity style={styles.button} onPress={checkOut}>
-        <Text style={styles.title}> Sepete Ekle</Text>
+        <Text style={styles.title}>Checkout</Text>
       </TouchableOpacity>
       {/* <Button onPress={() => checkOut()} title={'Checkout'} /> */}
     </View>

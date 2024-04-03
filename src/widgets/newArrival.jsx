@@ -35,7 +35,6 @@ const NewArrival = () => {
     </View>
   );
 };
-// item olarak nasıl yakalanıyor???? flatlist içinde
 // define your styles
 const styles = StyleSheet.create({
   container: {
