@@ -8,9 +8,11 @@ import ProfileMenu from '../../components/profile/profileMenü';
 import {screenStyle} from '../../styles/secreenStyle';
 import {LOGİN, PRODUCTLİST} from '../../utils/routes';
 import {Button} from '@ui-kitten/components';
+import {useNavigation} from '@react-navigation/native';
 
 // create a component
-const Profile = navigation => {
+const Profile = () => {
+  const navigation = useNavigation();
   const {login} = useContext(StoreContext);
   return (
     <View style={screenStyle.container}>
@@ -36,7 +38,9 @@ const Profile = navigation => {
             </Text>
           </View>
           <Button
-            onPress={() => navigation.navigate(LOGİN)}
+            onPress={() => {
+              navigation.navigate(LOGİN);
+            }}
             style={{marginVertical: 10}}
             status="info">
             Giriş Yap

@@ -8,6 +8,7 @@ import {
   LOGİN,
   PRODUCTDETAİL,
   PRODUCTLİST,
+  PROFILE,
   TAB,
 } from '../utils/routes';
 import Cart from '../screens/Cart/Cart';
@@ -17,6 +18,7 @@ import ProductDetail from '../screens/product/productDetail';
 import HeaderTabRight from '../components/router/headerTabRight';
 import Login from '../screens/login/login';
 import CheckOut from '../screens/checkout/checkOut';
+import Profile from '../screens/profıle/profile';
 
 const Stack = createNativeStackNavigator();
 
@@ -50,6 +52,7 @@ function RootNavigator() {
       <Stack.Screen name={CART} component={Cart} />
       <Stack.Screen name={LOGİN} component={Login} />
       <Stack.Screen name={CHECKOUT} component={CheckOut} />
+      <Stack.Screen name={PROFILE} component={Profile} />
     </Stack.Navigator>
   );
 }
